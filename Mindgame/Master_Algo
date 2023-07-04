@@ -1,0 +1,120 @@
+import java.util.*;
+import java.util.Scanner;
+public class Masteralgo {
+    private static final int CODE_LENGTH = 4;
+    private static final int NUM_DIGITS = 6;
+    public static void explain() {
+        Main.printSlowly("Als Spieler 2 geht es darum Feedback zu geben. Als erstes musst du eine 4 Stellige Zahlenkombination aus den Ziffern 1 - 6 angeben. \nDann wird der Computer raten, welche das ist. Du gibst ihm darauf hin Feedback. Dieses Feedback hat im Schema x W y B zu sein, \nwobei x die Anzahl an weißen Pins ist, und y die Anzahl an Schwarzen. Weiße Pins stehen für eine richtige Zahl, die aber an einer falschen Position ist. \nSchwarze Pins stehen für richtige Zahlen,. die ab der richtigen Position sind. \nDas Spiel ist beendet sobald die Kombination erraten wurde, und das Feedback von 0 W 4 B gegeben worden ist.\n\n\n");
+        main();
+    }
+    public static void main() {
+        List<List<Integer>> Guesses = new ArrayList<>(9);
+        List<List<Integer>> Feedbacks = new ArrayList<>(9);
+        int VersuchNr = 1;
+        List<Integer> secretCode = generateCode();
+        System.out.println(secretCode);
+        System.out.print(firstGuess() + " ");
+        List<Integer> currGuess;
+        Scanner scanner = new Scanner(System.in);
+        Guesses.add(0, firstGuess());
+        String feedbackf = scanner.nextLine().trim();
+        Feedbacks.add(0, whatFeedback(feedbackf));
+        for (int i = 1; i < 10; i++) {
+            currGuess = generateNextGuess(Guesses, Feedbacks, VersuchNr);
+            VersuchNr++;
+            System.out.print(currGuess + " ");
+            String feedback = scanner.nextLine().trim();
+            Feedbacks.add(i, whatFeedback(feedback));
+            Guesses.add(i,currGuess);
+        }
+    }
+    private static List<Integer> generateCode() {
+        List<Integer> secretCode = new ArrayList<>();
+        Random random = new Random();
+        while (secretCode.size() < CODE_LENGTH) {
+            int color = random.nextInt(NUM_DIGITS) + 1;
+            if (!secretCode.contains(color)) {
+                secretCode.add(color);
+            }
+        }
+        return secretCode;
+    }
+    public static List<Integer> firstGuess() {
+        List<Integer> firstGuess = new ArrayList<>();
+    for (int i = 1; i <= CODE_LENGTH; i++) {
+    firstGuess.add(i);
+    }
+        return firstGuess;
+    }
+    public static List<Integer> whatFeedback(String userFeedback) {
+        List<Integer> feedback = new ArrayList<>();
+        String[] parts = userFeedback.split(" ");
+        feedback.add(Integer.parseInt(parts[0]));
+        feedback.add(Integer.parseInt(parts[2]));
+        if (feedback.get(1) == CODE_LENGTH) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Der Computer hat die Kombination erraten und gewinnt das Spiel.");
+            System.out.println("Möchtest du nochmal spielen? \n[J]a \n[N]ein");
+            String nochmal = scanner.nextLine().toLowerCase();
+            if (nochmal.contains("j")) {
+                Masteralgo Test = new Masteralgo();
+                Test.main();
+            } else if (nochmal.contains("n")) {
+                System.exit(42);
+            } else {
+                System.out.println("117 32 115 116 111 111 98 105 100 ");
+                System.exit(69);
+            }
+
+        }
+        return feedback;
+    }
+    public static Boolean legitGuess(List<List<Integer>> Guesses, List<List<Integer>> Feedbacks, int VersuchNr, List<Integer> cGuess) {
+        // Check if this guess is a valid guess by checking all past guesses and their respective feedbacks
+        int Jop = 0; // random name just for checking if all the past combinations with their respective feedbacks are correctly connected with the current guess
+        int W = 0; // number of white pegs aka. right number but wrong position in the combination
+        int B = 0; // number of black pegs aka. right number and right position in the combination
+        boolean W1; // boolean representation if the number of white pegs is equal to the number of white pegs in the feedback
+        boolean B1; // boolean representation if the number of black pegs is equal to the number of black pegs in the feedback
+        for (int i = 0; i < VersuchNr; i ++) {
+            for (int j = 0; j < CODE_LENGTH; j++) {
+                for (int k = 0; k <CODE_LENGTH; k++) {
+                    if (Guesses.get(i).get(j).equals(cGuess.get(k))) {
+                        W++;
+                    }
+                }
+            }
+            for (int l = 0; l < CODE_LENGTH; l++) {
+                if (Guesses.get(i).get(l).equals(cGuess.get(l))) {
+                    B++;
+                    W--;
+                }
+            }
+            W1 = (W == (Feedbacks.get(i).get(0)));
+            B1 = (B == (Feedbacks.get(i).get(1)));
+            W = 0;
+            B = 0;
+            if(W1 && B1) {
+                Jop++;
+            } else {
+                return false;
+            }
+        }
+        if ( Jop == VersuchNr) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static List<Integer> generateNextGuess(List<List<Integer>> Guesses, List<List<Integer>> Feedbacks, int VersuchNr) {
+        //generates new 4 digit combinations and checks if they're valid
+        List<Integer> nextGuess = generateCode();
+        nextGuess.clear();
+        nextGuess = generateCode();
+        Boolean lGuess = legitGuess(Guesses, Feedbacks, VersuchNr, nextGuess);
+        if (lGuess) {
+            return nextGuess;
+        }
+        return generateNextGuess(Guesses, Feedbacks, VersuchNr);
+    }
+}
