@@ -110,7 +110,21 @@ public class Main {
                     "nächste Zeit flach.\n");
             fettleibigkeit -= 5;
         }
-        printSlowly("John bekommt am Mittag einen Brief vom Finanzamt. Soll er mit ihm machen?\n\n\n\n\n\n\n");
+                printSlowly( john + " bekommt am Mittag einen Brief vom Finanzamt. Soll er mit ihm machen?\n- Öffnen \n- Birgit damit beauftragen \n-Verbrennen");
+        String KlaasAnt = scanner.nextLine().toLowerCase();
+        if (KlaasAnt.contains("Öffnen")) {
+            printSlowly(john + " erfährt von einem Termin beim Finanzamt bei einem gewissen Klaas Petri Prai morgen um 16:20 Uhr.");
+
+        } else if(KlaasAnt.contains("Birgit")) {
+            printSlowly("Birgit erzählt " + john + " von dem Termin, nennt als Uhrzeit 16:25 Uhr.");
+            birgitCool -= 5;
+            klaasPetriPraiCool -= 5;
+        } else {
+            klaasPetriPraiCool -= 10;
+        }
+        printSlowly("Soll " + john + " bis zum Ende des Tages seine Kenntnisse in Französisch so verbessern, dass er das Spiel \n" +
+                "eigenhändig übersetzten kann, oder seine Zeit anderweitig nutzen?\nJa\nNein");
+        String TagZweiletztes = scanner.nextLine();
         playGame(type, playerCount);
     }
     public static void playGame(int type, int playercount) {
