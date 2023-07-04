@@ -1,0 +1,335 @@
+import java.sql.SQLOutput;
+import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+    public static void main(String[] args) {
+        Masteralgo Test = new Masteralgo();
+        Test.explain();
+        Scanner scanner = new Scanner(System.in);
+        // Stats:
+        int effiziens = 0;
+        int fettleibigkeit = 0;
+        int sprachkenntnisse = 0;
+
+        //Game Stats:
+        int accassability = 0;
+        int visuelles = 0;
+
+        // Charakter Beziehungen:
+        int birgitCool = 0;
+        int baduCool = 0;
+        int klaasPetriPraiCool = 0;
+
+        //user input auf Fragen, Zwischenspeicher, für die Multiple Coice Fragen:
+        int kleinBadu1= 0;
+
+        // Game Typ:
+        int type = 69;
+        int playerCount = 0;
+        printSlowly("TAG 1\n" +
+                "------------------------------- \n");
+
+        printSlowly("Badu “der Meister der Visuellen Künste“ Slick ruft an\n" +
+                "Badu erzählt von seiner neuen Ausbildung bei Grafik-Design 2001™ und fragt John, wie es mit seiner\n" +
+                "Jobsuche voran geht.\n" +
+                "- [1] John erzählt ihm enthusiastisch von seiner neuen Idee -> Badu ist voll dabei und liefert neue Ideen\n" +
+                "zum Visuellen \n" +
+                "- [2] John ärgert sich lautstark über Badu, da er selbst nach 2 Jahren noch immer keine Idee hat, dass\n" +
+                "John keinen Job möchte. \n" +
+                "- [3] John täuscht einen Verlust der Verbindung vor und legt auf \n");
+        String userinput3 = scanner.nextLine().toLowerCase();
+        kleinBadu1 = dreiAnt(userinput3, "1", "2", "3", kleinBadu1);
+        if (kleinBadu1 == 1) {
+            baduCool += 5;
+            visuelles += 5;
+        } else if (kleinBadu1 == 2) {
+            baduCool -= 20;
+            printSlowly("Badu: Wenigstens habe ich innerhalb der letzten zwei Jahre mein Haus verlassen. \nEr legt auf\n\n\n\n\n");
+        }else if (kleinBadu1 == 3) {
+            Random random = new Random();
+            int randnum2 = random.nextInt(2);
+            int randnum3 = random.nextInt(2);
+            if (randnum2 + randnum3 == 2) {
+                baduCool -= 10;
+            }
+        }
+        printSlowly("Auf der Suche nach Inspiration schaut sich John in seiner Umgebung um. Auf seinem Whiteboard\n" +
+                "entdeckt er ein vergangenes Spiel Galgenmännchen. Das Wort, welches er erfolgreich erraten hatte,\n" +
+                "war Zwiebelfisch. Das ist John Leibspeise. Diese Entdeckung bringt ihm auf die Idee, etwas ähnliches\n" +
+                "mit seinem Spiel zu machen. John will das Spiel Mastermind programmieren. Was benutzt John, als\n" +
+                "zu erratendes etwas?\n" +
+                "- [Farben]\n" +
+                "- [Zahlen]\n" +
+                "- [Buchstaben]\n");
+        String userinput1 = scanner.nextLine().toLowerCase();
+        type = dreiAnt(userinput1,"farben","zahlen","buchstaben",type);
+        printSlowly("John überlegt sich, ob es eine bessere Idee wäre, es zu einem zwei-spieler-Spiel zu machen, oder\n" +
+                "einen Spieler gegen den Computer spielen zu lassen.\n" + "- [PvP] \n- [PvE]\n");
+        String userinput2 = scanner.nextLine().toLowerCase();
+        playerCount = zweiAnt(userinput2, "pvp", "pve", playerCount);
+        if (playerCount == 1) {
+            printSlowly("John denkt noch genauer über das Spiel nach, und siehr ein, dass es als Computerspiel und  als PvP keinen Sinn macht, daher entscheidet er sich doch für ein PvE Spiel.\n");
+        }
+        printSlowly("Nach John willensstark gefällten Entscheidungen klopft es an seiner Tür. Seine Mutter Birgit kommt \n" +
+                "herein und bietet ihm einen Berliner an. Was macht John? \n" +
+                "-[1] John nimmt dankend den Berliner an und erzählt Birgit freudig von seinen Fortschritten. \n-[2] John lehnt, ohne etwas zu sagen den Berliner ab und dreht sich von ihr ab. \n-[3] John wirft Birgit den Berliner an den Kopf und schreit sie an, wie sie es wagen könnte, seinen innovativen Geist in der Produktionsphase zu stören.\n");
+        String Ant = scanner.nextLine().toLowerCase();
+        if (Ant.contains("1")) {
+            birgitCool += 5;
+            effiziens += 5;
+            fettleibigkeit += 5;
+        } else if (Ant.contains("2")) {
+            birgitCool -= 5;
+            effiziens += 5;
+        } else if (Ant.contains("3")) {
+            printSlowly(" John wird rausgeworfen und trifft neben der \n" +
+                    "Autobahnauffahrt seinen langen verschollenen Vater, welcher fürchterlich nach Frettchen riecht,\n" +
+                    "wieder.");
+            System.exit(69);
+        }
+        printSlowly("John legt sich nach diesem Tag voller Arbeit auf seine knallharte Matratze und schläft, wie ein Stein. \n");
+        printSlowly("TAG 2\n" +
+                "-------------------------------\n");
+        printSlowly("Nach mehr als 12 Stunden schlaf ist John wieder putzmunter. Am Morgen muss er dennoch eine \n" +
+                "Entscheidung fällen, welche ihm nicht leichtfällt. Welches Müsli soll er schnabulieren? \n-[1] Käse-Müsli \n-[2] Avocado-Banane-Müsli \n-[3] Knoblauch-ingwer-Müsli\n");
+        String Ant1 = scanner.nextLine().toLowerCase();
+        if (Ant1.contains("1")) {
+        printSlowly(" Nach den ersten zwei Löffeln sieh schon nur noch schwarz vor Augen. Einige Zeit \n" +
+                "später wacht er in einem weißen Raum wieder auf und das letzte, was er sieht, ist der Stecker, des \n" +
+                "externen Herzschrittmachers, welcher von Birgit aus der Steckdose gezogen wird. Er hört sie noch \n" +
+                "sagen: „Es war mein Käse-Müsli John.“");
+            System.out.println("Das Ende");
+        System.exit(69);
+        } else if (Ant1.contains("2")) {
+            printSlowly("Trotz des ungewöhnlichen Geschmacks findet John einen Gefallen daran \n" +
+                    "und kann sich nach dem Frühstück frisch gestärkt an seine Arbeit machen\n");
+            effiziens += 5;
+        } else if (Ant1.contains("3")) {
+            printSlowly("  John muss sich aus Geschmacksgründen übergeben und liegt für die \n" +
+                    "nächste Zeit flach.\n");
+            fettleibigkeit -= 5;
+        }
+        printSlowly("John bekommt am Mittag einen Brief vom Finanzamt. Soll er mit ihm machen?\n\n\n\n\n\n\n");
+        playGame(type, playerCount);
+    }
+    public static void playGame(int type, int playercount) {
+        if(playercount == 1) {
+            einzelSpieler(type);
+        } else if (playercount == 2){
+            einzelSpieler(type);
+        } else {
+            System.out.println("117 32 115 116 111 111 98 105 100 ");
+            System.exit(69);
+        }
+    }
+    public static int zweiAnt (String Nachricht, String Ant1, String Ant2, int Antwort){
+        if (Nachricht.contains(Ant1)) {
+            Antwort = 1;
+            return(Antwort);
+        } else if(Nachricht.contains(Ant2)) {
+            Antwort = 2;
+            return(Antwort);
+        }
+            return (420);
+    }
+    public static int dreiAnt (String Nachricht, String Ant1, String Ant2, String Ant3, int Antwort) {
+        if (Nachricht.contains(Ant1)) {
+            Antwort = 1;
+            return(Antwort);
+        } else if (Nachricht.contains(Ant2)) {
+            Antwort = 2;
+            return(Antwort);
+        } else if (Nachricht.contains(Ant3)) {
+            Antwort = 3;
+            return(Antwort);
+        }
+        return(420);
+    }
+    public static  void einzelSpieler(int gametype){
+        int type = 0;
+        String gameObjekt = "0";
+        Random random = new Random();
+        int[] code = new int[4];
+        String[] codeF = new String[4];
+        String[] codeB = new String[4];
+        for (int i = 0; i <4; i++) {
+            int randnum = random.nextInt(6) + 1;
+            boolean isDuplicate = false;
+            for (int j = 0; j < i; j++) {
+                if (code[j] == randnum) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (isDuplicate) {
+                i--;
+                continue;
+            }
+            code[i] = randnum;
+        }
+        System.out.println("Einzelspieler");
+        if (gametype == 1) {
+            String[] farben = {"grün", "orange", "braun", "rot", "gelg", "blau"};
+            for (int i = 0; i <4; i++) {
+                int index = code[i] - 1;
+                String Farbe = farben[index];
+                codeF[i] = Farbe;
+            }
+            //System.out.println("// Zum Testen: " + Arrays.toString(codeF));
+            System.out.println("Farben");
+            System.out.println("Liste der  Farben: grün; orange; braun; rot; gelg; blau");
+            gameObjekt = "Farben";
+            type = 1;
+        } else if (gametype == 2) {
+            System.out.println("Zahlen");
+            gameObjekt = "Zahlen";
+            type = 2;
+            Scanner scanner = new Scanner(System.in);
+            printSlowly("John fragt sich, ob der Spieler Spieler1 oder Spieler2 sein soll: \n -[1] Spieler1\n -[2] Spieler2\n");
+            String userinput3 = scanner.nextLine().toLowerCase();
+            if (userinput3.contains("2")) {
+                Masteralgo Test = new Masteralgo();
+                Test.explain();
+            }
+            //System.out.println("// Zum Testen: " + Arrays.toString(code));
+        } else if (gametype == 3) {
+            System.out.println("Buchstaben");
+            gameObjekt = "Buchstaben";
+            type = 3;
+            String[] buchstaben = {"a", "b", "c", "d", "e", "f"};
+            for (int i = 0; i <4; i++) {
+                int index = code[i] - 1;
+                String Farbe = buchstaben[index];
+                codeB[i] = Farbe;
+            }
+            //System.out.println("// Zum Testen: " + Arrays.toString(codeB));
+        }
+        printSlowly("In Mastermind geht es darum eine Kombination an "+ gameObjekt+ " zu erraten. Du hast 10 Versuche diese Kombination zu erraten. " +
+                "\nJede Runde sagt dir der Computer, wie viele Deiner " + gameObjekt + " in der, vom Computer generierten, Kombination existieren" +
+                "\nund wie viele dieser richtigen "+ gameObjekt+ "auch an der richtigen Stelle sind.");
+        printSlowly("Schreibe deinen Ersten Versuch als nächstes hier drunter. Du musst 4 " + gameObjekt + "getrennt mit Leerzeichen(z.B.: 2 4 5 1 NICHT: 2364):\n");
+        int Weiß = 0;
+        int Schwarz = 0;
+        String[] Weißschwarz = Versuche(Weiß, Schwarz, code, type, codeF, codeB);
+        System.out.println(Weißschwarz[0] + " Weiß | " + Weißschwarz[1] + " Schwarz");
+        for (int i = 1 ; i <= 10 ; i++ ) {
+            Weißschwarz = Versuche(Weiß, Schwarz, code, type, codeF, codeB);
+            System.out.println(Weißschwarz[0] + " Weiß | " + Weißschwarz[1] + " Schwarz");
+        }
+    }
+    public static String[] Versuche (int Weiß, int Schwarz, int code[], int type, String codeF[], String codeB[]) {
+        Scanner scanner = new Scanner(System.in);
+        String Versuch = scanner.nextLine();
+        String[] Antwort = Versuch.split(" ");
+        if (Antwort.length != 4) {
+            System.out.println("117 32 115 116 111 111 98 105 100 ");
+            System.exit(69);
+        }
+        String[] Weißschwarz = new String[2];
+        // Farben:
+        if (type == 1) {
+            for (int i =0; i<=3; i++) {
+                for (int j =0; j<=3; j++) {
+                    if (Antwort[i].equals(String.valueOf(codeF[j]))) {
+                        Weiß += 1;
+                    }
+                }
+                if (Antwort[i].equals(String.valueOf(codeF[i]))) {
+                    Schwarz += 1;
+                    Weiß -= 1;
+                }
+            }
+            if (Schwarz == 4) {
+                System.out.println("Du hast gewonnen! Die richtige Kombination war:" + Arrays.toString(codeF));
+                System.exit(42069);
+            }
+        }
+        // Zahlen:
+        if (type == 2) {
+            for (int i =0; i<=3; i++) {
+                for (int j =0; j<=3; j++) {
+                    if (Antwort[i].equals(String.valueOf(code[j]))) {
+                        Weiß += 1;
+                    }
+                }
+                if (Antwort[i].equals(String.valueOf(code[i]))) {
+                    Schwarz += 1;
+                    Weiß -= 1;
+                }
+            }
+            if (Schwarz == 4) {
+                System.out.println("Du hast gewonnen! Die richtige Kombination war:" + Arrays.toString(code));
+                System.exit(42069);
+            }
+        }
+        // Buchstaben:
+        if (type == 3) {
+            for (int i =0; i<=3; i++) {
+                for (int j =0; j<=3; j++) {
+                    if (Antwort[i].equals(String.valueOf(codeB[j]))) {
+                        Weiß += 1;
+                    }
+                }
+                if (Antwort[i].equals(String.valueOf(codeB[i]))) {
+                    Schwarz += 1;
+                    Weiß -= 1;
+                }
+            }
+            if (Schwarz == 4) {
+                System.out.println("Du hast gewonnen! Die richtige Kombination war:" + Arrays.toString(codeB));
+                System.exit(42069);
+            }
+        }
+        Weißschwarz[0] = String.valueOf(Weiß);
+        Weißschwarz[1] = String.valueOf(Schwarz);
+        return Weißschwarz;
+    }
+    public static void mehrSpieler(int gametype){
+        Scanner scanner = new Scanner(System.in);
+        String gameObjekt = "0";
+        System.out.println("Mehrspieler");
+        if (gametype == 1) {
+            System.out.println("Farben");
+            gameObjekt = "Farben";
+            System.out.println("Die Fareb sind: grün orange braun rot gelg blau");
+        } else if (gametype == 2) {
+            System.out.println("Zahlen");
+            gameObjekt = "Zahlen";
+        } else if (gametype == 3) {
+            System.out.println("Buchstaben");
+            gameObjekt = "Buchstaben";
+        }
+        printSlowly("In Mastermind geht es darum eine Kombination an "+ gameObjekt+ " zu erraten. Du hast 10 Versuche diese Kombination zu erraten. " +
+                "\nJede Runde sagt dir der Computer, wie viele Deiner " + gameObjekt + " in der, vom Computer generierten, Kombination existieren" +
+                "\nund wie viele dieser richtigen "+ gameObjekt+ "auch an der richtigen Stelle sind.");
+        printSlowly("Schreibe deinen Ersten Versuch als nächstes hier drunter. Du musst 4 " + gameObjekt + "getrennt mit Leerzeichen(z.B.: 2 4 5 1 NICHT: 2364):\n");
+        System.out.println("Schreibe Deinen Code Hier: ");
+        String Code = scanner.nextLine();
+        for (int i = 1; i <= 10; i++) {
+            Test(i);
+        }
+    }
+    public static void Test (int i) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Versuch Nr." + i + ": ");
+        String Versuch = scanner.nextLine();
+        System.out.println("Antwort Nr. " + i + ": ");
+        String Ans = scanner.nextLine().toLowerCase();
+        System.out.println(Ans);
+        if (Ans.contains("4 schwarz")) {
+            System.out.println("Spieler 1 hat gewonnen :D");
+            System.exit(42069);
+        }
+    }
+    public static void printSlowly(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            System.out.print(text.charAt(i));
+            try {
+                Thread.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
